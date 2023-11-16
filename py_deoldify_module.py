@@ -30,10 +30,12 @@ class py_deoldify_module(bmf.Module):
         weight_path=Path('/content/DeOldify')
 
 
-#Our module needs to use a specific set of weights for the DeOldify model, and these weights can 
+#Task1
+# Our module needs to use a specific set of weights for the DeOldify model, and these weights can 
 # be located in different places. We have an option dictionary that might contain a custom path for these weights under the key 'model_path'. 
 # How can we write a conditional statement that first checks if this custom path is provided 
 # and then sets model_path to this value if it exists? 
+#Task1
         
         self.colorizer = get_stable_video_colorizer(weight_path)
         self.idx = 0
@@ -44,14 +46,14 @@ class py_deoldify_module(bmf.Module):
     def process(self, task):
         # iterate through all input queues to the module
         idx = self.idx
-#STEP2
-        '''
-        "In our module, we're dealing with multiple input queues, each potentially containing different video streams. 
-        How can we write a loop that goes through each of these input queues, processes the packets within them, and then 
-        places the results into the correct corresponding output queue? Also, consider how we should efficiently handle 
-        the situation where an input queue is empty. What would be a smart way to proceed when an input queue runs out of packets?"
-        '''
-#STEP2
+#Task2
+        
+    #"In our module, we're dealing with multiple input queues, each potentially containing different video streams. 
+    # How can we write a loop that goes through each of these input queues, processes the packets within them, and then 
+    #places the results into the correct corresponding output queue? Also, consider how we should efficiently handle 
+    #the situation where an input queue is empty. What would be a smart way to proceed when an input queue runs out of packets?"
+        
+#Task2
 
                 # process packet if not empty
                 if packet.timestamp != Timestamp.UNSET and packet.is_(VideoFrame):
@@ -79,16 +81,16 @@ class py_deoldify_module(bmf.Module):
                         colored_image.save(output_name)
 
                     self.idx = idx + 1
-                    out_frame_np = np.array(colored_image)
-                    rgb = mp.PixelInfo(mp.kPF_RGB24)
-                    frame = mp.Frame(mp.from_numpy(out_frame_np), rgb)
-
-                    out_frame = VideoFrame(frame)
-                    out_frame.pts = vf.pts
-                    out_frame.time_base = vf.time_base
-
-                    pkt = Packet(out_frame)
-                    pkt.timestamp = out_frame.pts
+                    #Task3
+                    #In our colorization module, after we've successfully colorized an image, we need to convert it back into a format that
+                    #  our video processing framework understands. We start by incrementing an index counter idx. 
+                    # Can you think of why maintaining such a counter might be important in processing video frames? 
+                    # Next, we need to convert our colorized image back into a frame. 
+                    # How can we transform a colorized image (which is now a NumPy array) into a frame that's compatible with our BMF framework? 
+                    # Also, consider the significance of setting properties like pts and time_base for the new frame. 
+                    # What do these properties represent? 
+                    # Why must they be accurately transferred from the original frame to the colorized frame?"
+                    #Task3
 
                     output_queue.put(pkt)
 
