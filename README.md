@@ -14,7 +14,8 @@ Whether you are a beginner in Python or have some experience in programming, thi
 * Basic understanding of Python programming.
 * Familiarity with basic concepts of video processing and neural networks (optional but helpful).
 * A laptop with Python installed and access to the internet.
-* [CoLab Link](URLhttps://colab.research.google.com/drive/1stpomzQV3fLicyCKrPVzVMREd5Rvad_-?usp=sharing)
+* [CoLab link](https://colab.research.google.com/drive/1stpomzQV3fLicyCKrPVzVMREd5Rvad_-?usp=sharing) : https://colab.research.google.com/drive/1stpomzQV3fLicyCKrPVzVMREd5Rvad_-?usp=sharing
+* 
 
 ### Workshop Goals
 
